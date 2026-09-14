@@ -2241,6 +2241,323 @@ html[dir=rtl] .pd-recent-name{
   .pd-list-cat-icon{width:46px!important;height:46px!important;flex-basis:46px!important;font-size:18px!important}
 }
 
+
+/* ========== MOBILE HEADER DE-CROWD ========== */
+@media (max-width: 768px) {
+  .pd-header > .pd-main {
+    min-height: 52px !important;
+    padding: 6px 10px !important;
+    gap: 6px !important;
+  }
+  .pd-brand-wrap {
+    gap: 6px !important;
+    min-width: 0 !important;
+    flex: 1 1 auto !important;
+    overflow: hidden !important;
+  }
+  .pd-brand-link {
+    gap: 8px !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
+  }
+  .pd-header-sub {
+    display: none !important; /* hide "Clinical Tools" on mobile */
+  }
+  .pd-logo-wrap,
+  .pd-logo-img {
+    width: 32px !important;
+    height: 32px !important;
+    flex-basis: 32px !important;
+    border-radius: 9px !important;
+  }
+  .pd-home-btn {
+    width: 34px !important;
+    height: 34px !important;
+    flex: 0 0 34px !important;
+    border-radius: 9px !important;
+    font-size: 13px !important;
+  }
+  .pd-brand {
+    font-size: 0.95rem !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    max-width: 28vw !important;
+  }
+  .pd-header-actions {
+    gap: 4px !important;
+    flex: 0 0 auto !important;
+  }
+  .pd-lang-toggle.pd-lang-toggle-lg {
+    padding: 2px !important;
+    border-radius: 9px !important;
+  }
+  .pd-lang-toggle.pd-lang-toggle-lg button {
+    min-width: 34px !important;
+    min-height: 30px !important;
+    padding: 4px 7px !important;
+    font-size: 10px !important;
+    border-radius: 7px !important;
+  }
+  .pd-theme-btn,
+  .pd-fav-btn {
+    width: 34px !important;
+    height: 34px !important;
+    border-radius: 9px !important;
+    font-size: 13px !important;
+  }
+}
+
+/* Very small phones — logo only, no brand text */
+@media (max-width: 400px) {
+  .pd-header > .pd-main {
+    padding: 5px 8px !important;
+    gap: 4px !important;
+  }
+  .pd-brand {
+    display: none !important;
+  }
+  .pd-home-btn {
+    width: 32px !important;
+    height: 32px !important;
+    flex-basis: 32px !important;
+  }
+  .pd-logo-wrap,
+  .pd-logo-img {
+    width: 30px !important;
+    height: 30px !important;
+    flex-basis: 30px !important;
+  }
+  .pd-lang-toggle.pd-lang-toggle-lg button {
+    min-width: 30px !important;
+    min-height: 28px !important;
+    padding: 3px 6px !important;
+    font-size: 9.5px !important;
+  }
+  .pd-theme-btn,
+  .pd-fav-btn {
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 12px !important;
+  }
+  .pd-header-actions {
+    gap: 3px !important;
+  }
+}
+
+/* Extreme narrow */
+@media (max-width: 340px) {
+  .pd-home-btn {
+    display: none !important; /* keep logo as brand entry; home can be wired via logo later */
+  }
+  .pd-lang-toggle.pd-lang-toggle-lg button {
+    min-width: 28px !important;
+    padding: 3px 5px !important;
+  }
+}
+
+
+/* ========== CARD TITLE: 2 lines, no ellipsis dots ========== */
+#tool-fields > .pd-radio-group .pd-radio-legend-text,
+#tool-fields > .pd-radio-group legend.pd-radio-legend,
+#tool-fields > .pd-radio-group.pd-radio-yn .pd-radio-legend-text{
+  white-space: normal !important;
+  overflow: hidden !important;
+  text-overflow: clip !important;
+  display: -webkit-box !important;
+  -webkit-box-orient: vertical !important;
+  -webkit-line-clamp: 2 !important;
+  line-clamp: 2 !important;
+  max-height: none !important;
+  min-height: 0 !important;
+  hyphens: auto;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+/* Prefer wrapping over cutting mid-word when possible */
+#tool-fields > .pd-radio-group.pd-radio-yn .pd-radio-legend-text{
+  font-size: clamp(11px, 1.15vw, 13.5px) !important;
+  line-height: 1.35 !important;
+}
+#tool-fields > .pd-check span{
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: unset !important;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: clip;
+  line-height: 1.3;
+}
+#tool-fields > .pd-field label{
+  white-space: normal !important;
+  overflow: hidden !important;
+  text-overflow: clip !important;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2 !important;
+  -webkit-box-orient: vertical !important;
+  line-height: 1.3 !important;
+}
+
+
+/* ========== SCORE BAR NO OVERLAP + TOOL INFO + LIST RADIOS ========== */
+.pd-tool-bottom-bar{
+  position:absolute!important;
+  left:0;right:0;bottom:0;
+  z-index:6!important;
+  pointer-events:none;
+}
+.pd-tool-bottom-bar .pd-score-box,
+.pd-tool-bottom-bar .pd-score-reset{
+  pointer-events:auto;
+}
+.pd-sheet-body{
+  padding-bottom:calc(var(--pd-fixed-h) + 36px + env(safe-area-inset-bottom,0px))!important;
+}
+@media(max-width:600px){
+  :root{--pd-fixed-h:82px}
+  .pd-sheet-body{
+    padding-bottom:calc(var(--pd-fixed-h) + 40px + env(safe-area-inset-bottom,0px))!important;
+  }
+}
+@media(min-width:900px){
+  :root{--pd-fixed-h:86px}
+  .pd-sheet-body{
+    padding-bottom:calc(var(--pd-fixed-h) + 32px)!important;
+  }
+}
+/* Keep result card above bottom bar */
+#tool-result .pd-result{
+  margin-bottom:8px;
+}
+
+.pd-tool-info{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  padding:12px 14px;
+  margin-bottom:12px;
+  border-radius:14px;
+  border:1px solid color-mix(in srgb, var(--pd-green) 25%, var(--pd-border));
+  background:color-mix(in srgb, var(--pd-green) 8%, var(--pd-bg));
+  color:var(--pd-text);
+  font-size:12.5px;
+  font-weight:600;
+  line-height:1.45;
+}
+.pd-tool-info i{
+  color:var(--pd-green);
+  margin-top:2px;
+  flex:0 0 auto;
+}
+.dark .pd-tool-info{
+  background:rgba(5,150,105,.12);
+  border-color:rgba(52,211,153,.25);
+}
+
+/* List-style radio (Sgarbossa, Killip, NYHA) */
+#tool-fields > .pd-radio-group.pd-radio-list{
+  grid-column:1 / -1!important;
+}
+#tool-fields > .pd-radio-group.pd-radio-list .pd-radio-grid{
+  grid-template-columns:1fr!important;
+  gap:8px!important;
+}
+#tool-fields > .pd-radio-group.pd-radio-list .pd-radio-card{
+  justify-content:flex-start!important;
+  text-align:start!important;
+  min-height:44px!important;
+  padding:10px 12px!important;
+  font-size:12px!important;
+  font-weight:700!important;
+  line-height:1.35!important;
+}
+
+
+/* ========== LONG SCORE RESULT: wrap, no clipping ========== */
+.pd-score-box{
+  align-items:flex-start!important;
+  min-height:auto!important;
+  height:auto!important;
+  padding-top:10px!important;
+  padding-bottom:10px!important;
+}
+.pd-score-main{
+  flex:1!important;
+  min-width:0!important;
+  flex-wrap:wrap!important;
+  align-items:flex-start!important;
+  justify-content:flex-start!important;
+  gap:6px 10px!important;
+  text-align:start!important;
+}
+.pd-score-box #bottom-result-value{
+  white-space:normal!important;
+  overflow:visible!important;
+  text-overflow:unset!important;
+  font-size:clamp(13px, 2.4vw, 22px)!important;
+  line-height:1.25!important;
+  max-width:100%!important;
+  word-break:break-word!important;
+  overflow-wrap:anywhere!important;
+  display:block!important;
+  width:100%!important;
+  font-weight:800!important;
+}
+.pd-score-box.pd-score-long #bottom-result-value{
+  font-size:clamp(12px, 2vw, 16px)!important;
+  line-height:1.35!important;
+}
+.pd-score-box.pd-score-long{
+  flex-wrap:wrap!important;
+}
+.pd-score-box.pd-score-long .pd-score-main{
+  width:calc(100% - 48px)!important;
+}
+.pd-score-unit{
+  white-space:normal!important;
+  overflow:visible!important;
+  max-width:100%!important;
+  font-size:11px!important;
+  line-height:1.35!important;
+  display:block!important;
+  width:100%!important;
+}
+.pd-score-badge{
+  white-space:normal!important;
+  max-width:100%!important;
+  line-height:1.3!important;
+}
+
+/* In-sheet result value also wraps */
+.pd-result-value{
+  white-space:normal!important;
+  overflow-wrap:anywhere!important;
+  word-break:break-word!important;
+  font-size:clamp(1.1rem, 3.5vw, 2.1rem)!important;
+  line-height:1.25!important;
+}
+.pd-result-unit{
+  white-space:normal!important;
+  overflow-wrap:anywhere!important;
+}
+
+/* Bottom bar grows with content */
+.pd-tool-bottom-bar{
+  height:auto!important;
+  min-height:var(--pd-fixed-h)!important;
+  align-items:stretch!important;
+}
+@media(max-width:600px){
+  .pd-score-box #bottom-result-value{
+    font-size:clamp(12px, 3.6vw, 18px)!important;
+  }
+  .pd-score-box.pd-score-long #bottom-result-value{
+    font-size:clamp(11px, 3.2vw, 14px)!important;
+  }
+}
+
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js" defer></script>
 </head>
@@ -2513,7 +2830,7 @@ calc(v){let s=0;Object.values(v).forEach(x=>{if(x)s++});return{value:s,unit:'poi
 fields:[{id:'dvt',type:'check',en:'Clinical signs of DVT',ar:'علامات DVT'},{id:'alt',type:'check',en:'PE is #1 diagnosis',ar:'PE هو التشخيص الأول'},{id:'hr',type:'check',en:'Heart rate >100',ar:'نبض >100'},{id:'immob',type:'check',en:'Immobilization / surgery 4w',ar:'تثبيت أو جراحة'},{id:'prev',type:'check',en:'Previous DVT/PE',ar:'DVT/PE سابق'},{id:'hemop',type:'check',en:'Hemoptysis',ar:'نفث دم'},{id:'malig',type:'check',en:'Malignancy',ar:'خباثة'}],
 sample:{dvt:1,alt:1,hr:1,immob:0,prev:0,hemop:0,malig:0},
 calc(v){let s=0;if(v.dvt)s+=3;if(v.alt)s+=3;if(v.hr)s+=1.5;if(v.immob)s+=1.5;if(v.prev)s+=1.5;if(v.hemop)s+=1;if(v.malig)s+=1;return{value:s,unit:'points',badge:s>6?'High':s>=2?'Moderate':'Low',badgeClass:s>6?'danger':s>=2?'warn':''}}},
-{id:'wells_dvt',cat:'scores',icon:'fa-vein',en:'Wells DVT',ar:'Wells DVT',descEn:'DVT risk',descAr:'خطر الخثار الوريدي العميق',
+{id:'wells_dvt',cat:'scores',icon:'fa-shoe-prints',en:'Wells DVT',ar:'Wells DVT',descEn:'DVT risk',descAr:'خطر الخثار الوريدي العميق',
 fields:[{id:'cancer',type:'check',en:'Active cancer',ar:'سرطان نشط'},{id:'paralysis',type:'check',en:'Paralysis / recent cast',ar:'شلل / جبيرة'},{id:'bedridden',type:'check',en:'Bedridden >3d or surgery',ar:'فراش أو جراحة'},{id:'tenderness',type:'check',en:'Localized tenderness',ar:'ألم موضعي'},{id:'swelling',type:'check',en:'Entire leg swollen',ar:'تورم الساق'},{id:'calf',type:'check',en:'Calf swelling >3cm',ar:'تورم ربلة >3سم'},{id:'pitting',type:'check',en:'Pitting edema',ar:'وذمة انطباعية'},{id:'collateral',type:'check',en:'Collateral veins',ar:'أوردة جانبية'},{id:'previous',type:'check',en:'Previous DVT',ar:'DVT سابق'},{id:'alt',type:'check',en:'Alternative diagnosis likely',ar:'تشخيص بديل'}],
 sample:{cancer:0,paralysis:0,bedridden:1,tenderness:1,swelling:1,calf:1,pitting:0,collateral:0,previous:0,alt:0},
 calc(v){let s=0;['cancer','paralysis','bedridden','tenderness','swelling','calf','pitting','collateral','previous'].forEach(k=>{if(v[k])s++});if(v.alt)s-=2;return{value:s,unit:'points',badge:s>=3?'High':s>=1?'Moderate':'Low',badgeClass:s>=3?'danger':s>=1?'warn':''}}},
@@ -2536,7 +2853,7 @@ calc(v){let s=0;const rr=+v.rr;if(rr<=8||rr>=25)s+=3;else if(rr<=11||rr>=21)s+=1
 {id:'gcs',cat:'scores',icon:'fa-brain',en:'GCS',ar:'GCS',descEn:'Glasgow Coma Scale',descAr:'مقياس غلاسكو للغيبوبة',
 fields:[{id:'eye',type:'number',en:'Eye opening (1–4)',ar:'فتح العين (1–4)'},{id:'verbal',type:'number',en:'Verbal (1–5)',ar:'لفظي (1–5)'},{id:'motor',type:'number',en:'Motor (1–6)',ar:'حركي (1–6)'}],
 sample:{eye:3,verbal:4,motor:5},
-calc(v){const s=(+v.eye||0)+(+v.verbal||0)+(+v.motor||0);return{value:s,unit:'points',badge:s<=8?'Severe':s<=12?'Moderate':'Mild',badgeClass:s<=8?'danger':s<=12?'warn':''}}},
+calc(v){const s=(+v.eye||0)+(+v.verbal||0)+(+v.motor||0);return{value:s,unit:'points',badge:s>=15?'Normal':s>=13?'Mild':s>=9?'Moderate':'Severe',badgeClass:s<=8?'danger':(s<=14?'warn':'')}}},
 {id:'nihss',cat:'scores',icon:'fa-head-side-virus',en:'NIHSS',ar:'NIHSS',descEn:'Stroke severity',descAr:'شدة السكتة',
 fields:[{id:'loc',type:'number',en:'LOC (0–3)',ar:'الوعي (0–3)'},{id:'gaze',type:'number',en:'Gaze (0–2)',ar:'النظر (0–2)'},{id:'facial',type:'number',en:'Facial (0–3)',ar:'الوجه (0–3)'},{id:'motor',type:'number',en:'Motor arms+legs (0–16)',ar:'القوة الحركية'},{id:'language',type:'number',en:'Language (0–3)',ar:'اللغة (0–3)'}],
 sample:{loc:0,gaze:1,facial:1,motor:3,language:1},
@@ -2656,7 +2973,7 @@ calc(v){const high=['gcs','fracture','basal','vomit','age'].some(k=>v[k]);const 
 {id:'gcs_trauma',cat:'emergency',icon:'fa-user-injured',en:'GCS Trauma',ar:'GCS رضح',descEn:'Trauma context',descAr:'سياق الرضح',
 fields:[{id:'eye',type:'number',en:'Eye (1–4)',ar:'العين'},{id:'verbal',type:'number',en:'Verbal (1–5)',ar:'لفظي'},{id:'motor',type:'number',en:'Motor (1–6)',ar:'حركي'}],
 sample:{eye:2,verbal:2,motor:4},
-calc(v){const s=(+v.eye)+(+v.verbal)+(+v.motor);return{value:s,unit:'',badge:s<=8?'Severe TBI':s<=12?'Moderate':'Mild',badgeClass:s<=8?'danger':s<=12?'warn':''}}},
+calc(v){const s=(+v.eye)+(+v.verbal)+(+v.motor);return{value:s,unit:'',badge:s>=15?'Normal':s>=13?'Mild TBI':s>=9?'Moderate TBI':'Severe TBI',badgeClass:s<=8?'danger':(s<=14?'warn':'')}}},
 {id:'ranson',cat:'emergency',icon:'fa-staff-snake',en:'Ranson (admission)',ar:'Ranson',descEn:'Pancreatitis severity',descAr:'شدة التهاب البنكرياس',
 fields:[{id:'age',type:'check',en:'Age >55',ar:'العمر >55'},{id:'wbc',type:'check',en:'WBC >16000',ar:'كريات بيض >16000'},{id:'glucose',type:'check',en:'Glucose >200',ar:'جلوكوز >200'},{id:'ldh',type:'check',en:'LDH >350',ar:'LDH >350'},{id:'ast',type:'check',en:'AST >250',ar:'AST >250'}],
 sample:{age:1,wbc:1,glucose:0,ldh:1,ast:0},
@@ -2794,7 +3111,7 @@ calc(v){const s=(+v.stridor)+(+v.retract)+(+v.air)+(+v.cyan)+(+v.loc);return{val
 {id:'ped_gcs',cat:'peds',icon:'fa-child-reaching',en:'Pediatric GCS',ar:'GCS للأطفال',descEn:'Age-adjusted',descAr:'حسب العمر',
 fields:[{id:'eye',type:'number',en:'Eye 1–4',ar:'العين'},{id:'verbal',type:'number',en:'Verbal 1–5',ar:'لفظي'},{id:'motor',type:'number',en:'Motor 1–6',ar:'حركي'}],
 sample:{eye:4,verbal:5,motor:6},
-calc(v){const s=(+v.eye)+(+v.verbal)+(+v.motor);return{value:s,unit:'',badge:s<=8?'Severe':s<=12?'Moderate':'Mild',badgeClass:s<=8?'danger':s<=12?'warn':''}}},
+calc(v){const s=(+v.eye)+(+v.verbal)+(+v.motor);return{value:s,unit:'',badge:s>=15?'Normal':s>=13?'Mild':s>=9?'Moderate':'Severe',badgeClass:s<=8?'danger':(s<=14?'warn':'')}}},
 {id:'who_dehyd',cat:'peds',icon:'fa-clipboard-check',en:'WHO Dehydration',ar:'جفاف منظمة الصحة',descEn:'Clinical class',descAr:'التصنيف السريري',
 fields:[{id:'level',type:'number',en:'0 none / 1 some / 2 severe',ar:'0 لا / 1 بعض / 2 شديد'}],
 sample:{level:1},
@@ -3011,9 +3328,11 @@ toolById('news2').calc=calcNews2;
 
 function calcNIHSS(v){
  const keys=['loc','locq','locc','gaze','visual','facial','armL','armR','legL','legR','ataxia','sensory','language','dysarthria','extinction'];
- if(keys.some(k=>v[k]===null||v[k]===undefined||v[k]===''))return null;
- const total=keys.reduce((a,k)=>a+Number(v[k]),0);
- return {value:total,unit:'/42',badge:total>=21?'Severe':total>=6?'Moderate':total>=1?'Minor':'No measurable deficit',badgeClass:total>=21?'danger':total>=6?'warn':'',breakdown:keys.map(k=>({label:k,value:v[k]})),formula:'NIHSS is the sum of the 15 standard neurologic domains; bedside definitions and scoring conventions must be followed exactly.'};
+ const labels={loc:'1a LOC',locq:'1b LOC questions',locc:'1c LOC commands',gaze:'2 Gaze',visual:'3 Visual',facial:'4 Facial',armL:'5a Arm L',armR:'5b Arm R',legL:'6a Leg L',legR:'6b Leg R',ataxia:'7 Ataxia',sensory:'8 Sensory',language:'9 Language',dysarthria:'10 Dysarthria',extinction:'11 Extinction'};
+ const filled=keys.filter(k=>v[k]!==null&&v[k]!==undefined&&v[k]!=='');
+ if(!filled.length)return {value:'—',unit:'/42',badge:'Select items',badgeClass:''};
+ const total=keys.reduce((a,k)=>a+(v[k]===null||v[k]===undefined||v[k]===''?0:Number(v[k])),0);
+ return {value:total,unit:'/42',badge:total>=21?'Severe':total>=6?'Moderate':total>=1?'Minor':'No measurable deficit',badgeClass:total>=21?'danger':total>=6?'warn':'',breakdown:filled.map(k=>({label:labels[k]||k,value:v[k]})),formula:'NIHSS = sum of 15 neurologic domains (empty items count as 0 until scored). Follow bedside definitions exactly.'};
 }
 function calcASCVD(v){
  const age=Number(v.age),tc=Number(v.tc),hdl=Number(v.hdl),sbp=Number(v.sbp);
@@ -3118,6 +3437,303 @@ toolById('maintenance_fluids').descEn='Holliday–Segar 4-2-1';toolById('mainten
 /* Fix eGFR to CKD-EPI 2021 race-free equation. */
 toolById('egfr_ckd').calc=function(v){if(v.creat==null||v.age==null||v.sex==null)return null;const cr=v.creat,age=v.age,k=v.sex==='f'?.7:.9,a=v.sex==='f'?-0.241:-0.302,x=142*Math.pow(Math.min(cr/k,1),a)*Math.pow(Math.max(cr/k,1),-1.2)*Math.pow(.9938,age)*(v.sex==='f'?1.012:1);return {value:x.toFixed(0),unit:'mL/min/1.73 m²',badge:x>=90?'G1':x>=60?'G2':x>=45?'G3a':x>=30?'G3b':x>=15?'G4':'G5',badgeClass:x<30?'danger':x<60?'warn':'',formula:'CKD-EPI 2021 creatinine equation (race-free).'}};
 
+
+/* UI upgrades: Killip, NYHA, Sgarbossa, QT drugs, ABG */
+replaceFields('killip',[
+ radioField('class','Killip class','درجة Killip',[
+  {v:'1',en:'Class I — No clinical HF (no rales, no S3)',ar:'الدرجة I — لا قصور قلب سريري (لا خراخر، لا S3)'},
+  {v:'2',en:'Class II — Mild HF (rales ≤½ lung fields or S3)',ar:'الدرجة II — قصور خفيف (خراخر ≤نصف الحقول أو S3)'},
+  {v:'3',en:'Class III — Pulmonary edema (rales >½ lung fields)',ar:'الدرجة III — وذمة رئوية (خراخر >نصف الحقول)'},
+  {v:'4',en:'Class IV — Cardiogenic shock',ar:'الدرجة IV — صدمة قلبية'}
+ ])
+]);
+toolById('killip').sample={class:'2'};
+toolById('killip').calc=function(v){if(v.class==null||v.class==='')return null;const c=+v.class;return{value:'Class '+c,unit:'',badge:c>=4?'Cardiogenic shock':c===3?'Pulmonary edema':c===2?'Mild HF':'No clinical HF',badgeClass:c>=3?'danger':c===2?'warn':'',formula:'Killip classification of AMI severity (bedside clinical class).'}};
+toolById('killip').infoEn='Killip class estimates severity of acute myocardial infarction from bedside signs of heart failure.';
+toolById('killip').infoAr='تصنيف Killip يقدّر شدة احتشاء العضلة القلبية من علامات قصور القلب السريرية.';
+
+replaceFields('nyha',[
+ radioField('class','NYHA functional class','التصنيف الوظيفي NYHA',[
+  {v:'1',en:'I — No limitation of physical activity',ar:'I — لا تقييد للنشاط البدني'},
+  {v:'2',en:'II — Slight limitation; comfortable at rest',ar:'II — تقييد خفيف؛ مرتاح أثناء الراحة'},
+  {v:'3',en:'III — Marked limitation; comfortable only at rest',ar:'III — تقييد واضح؛ مرتاح فقط أثناء الراحة'},
+  {v:'4',en:'IV — Symptoms at rest; any activity worsens symptoms',ar:'IV — أعراض أثناء الراحة؛ أي نشاط يزيدها'}
+ ])
+]);
+toolById('nyha').sample={class:'2'};
+toolById('nyha').calc=function(v){if(v.class==null||v.class==='')return null;return{value:'NYHA '+v.class,unit:'',badge:+v.class>=3?'Marked limitation':+v.class===2?'Slight limitation':'No limitation',badgeClass:+v.class>=3?'danger':+v.class===2?'warn':'',formula:'NYHA functional classification for heart failure symptoms.'}};
+toolById('nyha').infoEn='NYHA class describes how heart-failure symptoms limit daily physical activity.';
+toolById('nyha').infoAr='تصنيف NYHA يصف مدى تقييد أعراض قصور القلب للنشاط اليومي.';
+
+replaceFields('sgarbossa',[
+ radioField('criterion','ECG criterion (Sgarbossa)','معيار تخطيط القلب (Sgarbossa)',[
+  {v:'0',en:'None of the criteria — 0 points',ar:'لا يوجد أي معيار — 0 نقاط'},
+  {v:'5',en:'Concordant ST elevation ≥1 mm in leads with positive QRS (e.g. wide upright QRS + ST↑) — 5 points',ar:'ارتفاع ST متوافق ≥1 مم في موجات QRS موجبة — 5 نقاط'},
+  {v:'3',en:'ST depression ≥1 mm in V1–V3 (concordant depression) — 3 points',ar:'انخفاض ST ≥1 مم في V1–V3 — 3 نقاط'},
+  {v:'2',en:'Discordant ST elevation ≥5 mm in leads with negative QRS (e.g. deep S + marked ST↑) — 2 points',ar:'ارتفاع ST غير متوافق ≥5 مم مع QRS سالبة — 2 نقاط'}
+ ])
+]);
+toolById('sgarbossa').sample={criterion:'5'};
+toolById('sgarbossa').calc=function(v){if(v.criterion==null||v.criterion==='')return null;const s=+v.criterion;return{value:s,unit:'points',badge:s>=3?'Suggests MI in LBBB':'Less specific for MI',badgeClass:s>=3?'danger':'',formula:'Original Sgarbossa: ≥3 points suggests MI in the setting of LBBB. Use clinical judgment and serial ECGs.'}};
+toolById('sgarbossa').infoEn='Sgarbossa criteria help detect acute MI when LBBB makes the ECG harder to interpret. Examples: concordant ST↑ with upright QRS; ST↓ in V1–V3; discordant ST↑ ≥5 mm with negative QRS.';
+toolById('sgarbossa').infoAr='معايير Sgarbossa تساعد على كشف الاحتشاء الحاد عند وجود حصار فرع أيسر. أمثلة: ارتفاع ST متوافق مع QRS موجبة؛ انخفاض ST في V1–V3؛ ارتفاع غير متوافق ≥5 مم مع QRS سالبة.';
+
+/* QTc drug awareness — educational content */
+replaceFields('qt_aware',[
+ radioField('context','Clinical context','السياق السريري',[
+  {v:'review',en:'General awareness — high-risk drug classes',ar:'توعية عامة — فئات أدوية عالية الخطورة'},
+  {v:'combine',en:'Considering combining ≥2 QT-prolonging drugs',ar:'الجمع بين دوائين أو أكثر يطيلان QT'},
+  {v:'risk',en:'Patient with additional risk (female, low K/Mg, bradycardia, heart disease)',ar:'مريض بعوامل خطر إضافية (أنثى، نقص K/Mg، بطء قلب، مرض قلبي)'}
+ ])
+]);
+toolById('qt_aware').sample={context:'review'};
+toolById('qt_aware').calc=function(v){
+  const tips={
+    review:{en:'Review antiarrhythmics (e.g. amiodarone, sotalol), antipsychotics, macrolides/fluoroquinolones, some antiemetics, and methadone. Verify on CredibleMeds / formulary.',ar:'راجع مضادات اضطراب النظم (مثل أميودارون، سوتالول)، مضادات الذهان، الماكروليدات/الكينولونات، بعض مضادات القيء، والميثادون. تحقق من CredibleMeds / الدستور الدوائي.'},
+    combine:{en:'Avoid stacking QT-prolonging agents when possible; if unavoidable, monitor ECG and electrolytes closely.',ar:'تجنب تجميع أدوية تطيل QT إن أمكن؛ وإن لزم الأمر راقب التخطيط والكهارل عن قرب.'},
+    risk:{en:'Correct K/Mg, reassess drug list, consider cardiology input and serial QTc monitoring.',ar:'صحح البوتاسيوم والمغنيسيوم، راجع قائمة الأدوية، وفكّر باستشارة قلبية ومراقبة QTc متسلسلة.'}
+  };
+  const k=v.context||'review';
+  const tip=tips[k]||tips.review;
+  return{value:lang==='ar'?'توعية QT':'QT awareness',unit:'',badge:lang==='ar'?'ليست قائمة كاملة':'Not a complete list',badgeClass:'warn',formula:tip[lang==='ar'?'ar':'en']};
+};
+toolById('qt_aware').infoEn='Educational reminder only — always use a validated interaction resource (e.g. CredibleMeds) before prescribing.';
+toolById('qt_aware').infoAr='تذكير تعليمي فقط — استخدم مرجع تداخلات موثوقًا (مثل CredibleMeds) قبل الوصف.';
+toolById('qt_aware').en='QTc Drug Awareness';
+toolById('qt_aware').ar='أدوية تطيل فترة QT';
+toolById('qt_aware').descEn='High-risk drug classes & context';
+toolById('qt_aware').descAr='فئات عالية الخطورة والسياق السريري';
+
+/* ABG with optional acuity/compensation */
+replaceFields('abg',[
+ {id:'ph',type:'number',en:'pH',ar:'pH',min:6.5,max:8,step:0.01,required:true},
+ {id:'paco2',type:'number',en:'PaCO₂ (mmHg)',ar:'PaCO₂ (مم زئبق)',min:5,max:120,required:true},
+ {id:'hco3',type:'number',en:'HCO₃ (mEq/L)',ar:'HCO₃ (مEq/لتر)',min:1,max:60,required:true}
+]);
+toolById('abg').sample={ph:7.28,paco2:50,hco3:24};
+toolById('abg').calc=function(v){
+  if(v.ph==null||v.paco2==null||v.hco3==null)return null;
+  const ph=+v.ph, co2=+v.paco2, hco=+v.hco3;
+  if(!Number.isFinite(ph)||!Number.isFinite(co2)||!Number.isFinite(hco)||co2<=0||hco<=0)return null;
+
+  // Henderson–Hasselbalch validity: calculated pH = 6.1 + log10(HCO3 / (0.0301 × PaCO2))
+  const denom=0.0301*co2;
+  const calcPh=6.1+Math.log10(hco/denom);
+  const delta=Math.abs(ph-calcPh);
+  // Common bedside tolerance ~0.03–0.05; use 0.04
+  const valid=delta<=0.04;
+  const validityLabel=lang==='ar'
+    ?(valid?'صالح (Henderson–Hasselbalch)':'غير صالح — راجع العينة/الجهاز')
+    :(valid?'Valid (Henderson–Hasselbalch)':'Invalid ABG — check sample/analyzer');
+
+  if(!valid){
+    return{
+      value:lang==='ar'?'غازات دم غير صالحة (Invalid ABG)':'Invalid ABG',
+      unit:lang==='ar'
+        ?('pH المقاس '+ph.toFixed(2)+' ≠ المحسوب '+calcPh.toFixed(2)+' (|Δ|='+delta.toFixed(3)+')')
+        :('Measured pH '+ph.toFixed(2)+' ≠ calculated '+calcPh.toFixed(2)+' (|Δ|='+delta.toFixed(3)+')'),
+      badge:validityLabel,
+      badgeClass:'danger',
+      breakdown:[
+        {label:lang==='ar'?'pH المقاس':'Measured pH',value:ph.toFixed(2)},
+        {label:lang==='ar'?'pH المحسوب':'Calculated pH',value:calcPh.toFixed(2)},
+        {label:'|ΔpH|',value:delta.toFixed(3)},
+        {label:'PaCO₂',value:co2.toFixed(0)+' mmHg'},
+        {label:'HCO₃',value:hco.toFixed(1)+' mEq/L'}
+      ],
+      formula:lang==='ar'
+        ?'الصلاحية: pH = 6.1 + log₁₀(HCO₃ / (0.0301 × PaCO₂)). إذا |pH المقاس − المحسوب| > 0.04 فالعينة غالبًا غير صالحة.'
+        :'Validity: pH = 6.1 + log₁₀(HCO₃ / (0.0301 × PaCO₂)). If |measured − calculated pH| > 0.04, the ABG is likely invalid.'
+    };
+  }
+
+  const nPh=ph>=7.35&&ph<=7.45, nCo2=co2>=35&&co2<=45, nHco=hco>=22&&hco<=26;
+  const acidemia=ph<7.35, alkalemia=ph>7.45;
+  const hiCo2=co2>45, loCo2=co2<35, hiHco=hco>26, loHco=hco<22;
+
+  const near=function(a,b,tol){return Math.abs(a-b)<=tol;};
+  const winters=1.5*hco+8;
+  const expCo2MetAlk=40+0.6*(hco-24);
+  const dCo2=co2-40;
+  const hcoAcuteAcid=24+0.1*dCo2;
+  const hcoChronAcid=24+0.4*dCo2;
+  const hcoAcuteAlk=24-0.2*(40-co2);
+  const hcoChronAlk=24-0.5*(40-co2);
+
+  let primary='Normal acid–base';
+  let detail='';
+  let badgeClass='';
+
+  if(nPh&&nCo2&&nHco){
+    primary=lang==='ar'?'طبيعي':'Normal acid–base';
+  }else if(acidemia){
+    if(hiCo2&&!loHco){
+      if(near(hco,hcoAcuteAcid,2)){
+        primary=lang==='ar'?'حماض تنفسي حاد':'Acute respiratory acidosis';
+        detail=lang==='ar'?'HCO₃ يقترب من المتوقع للحالة الحادة':'HCO₃ near acute expected';
+      }else if(near(hco,hcoChronAcid,3)||hco>hcoAcuteAcid+2){
+        primary=lang==='ar'?'حماض تنفسي مزمن (معاوض جزئياً/كلياً)':'Chronic respiratory acidosis (partial/full compensation)';
+        detail=lang==='ar'?'HCO₃ يقترب من المتوقع للمزمن':'HCO₃ near chronic expected';
+      }else if(loHco){
+        primary=lang==='ar'?'حماض مختلط (تنفسي + استقلابي)':'Mixed acidosis (respiratory + metabolic)';
+      }else{
+        primary=lang==='ar'?'حماض تنفسي':'Respiratory acidosis';
+      }
+      badgeClass=ph<7.2?'danger':'warn';
+    }else if(loHco&&!hiCo2){
+      if(near(co2,winters,2)){
+        primary=lang==='ar'?'حماض استقلابي معاوض تنفسياً':'Metabolic acidosis with appropriate respiratory compensation';
+        detail=lang==='ar'?'PaCO₂ ≈ معادلة Winter':'PaCO₂ matches Winter’s formula';
+      }else if(co2>winters+2){
+        primary=lang==='ar'?'حماض استقلابي + حماض تنفسي مرافق':'Metabolic acidosis + concurrent respiratory acidosis';
+      }else if(co2<winters-2){
+        primary=lang==='ar'?'حماض استقلابي + قلاء تنفسي مرافق':'Metabolic acidosis + concurrent respiratory alkalosis';
+      }else{
+        primary=lang==='ar'?'حماض استقلابي':'Metabolic acidosis';
+      }
+      badgeClass=ph<7.2?'danger':'warn';
+    }else if(hiCo2&&loHco){
+      primary=lang==='ar'?'حماض مختلط (تنفسي + استقلابي)':'Mixed acidosis (respiratory + metabolic)';
+      badgeClass='danger';
+    }else{
+      primary=lang==='ar'?'حموضة دم — نمط غير نمطي':'Acidemia — atypical pattern';
+      badgeClass='warn';
+    }
+  }else if(alkalemia){
+    if(loCo2&&!hiHco){
+      if(near(hco,hcoAcuteAlk,2)){
+        primary=lang==='ar'?'قلاء تنفسي حاد':'Acute respiratory alkalosis';
+      }else if(near(hco,hcoChronAlk,3)||hco<hcoAcuteAlk-2){
+        primary=lang==='ar'?'قلاء تنفسي مزمن (معاوض)':'Chronic respiratory alkalosis (compensated)';
+      }else if(hiHco){
+        primary=lang==='ar'?'قلاء مختلط (تنفسي + استقلابي)':'Mixed alkalosis (respiratory + metabolic)';
+      }else{
+        primary=lang==='ar'?'قلاء تنفسي':'Respiratory alkalosis';
+      }
+      badgeClass=ph>7.6?'danger':'warn';
+    }else if(hiHco&&!loCo2){
+      if(near(co2,expCo2MetAlk,5)){
+        primary=lang==='ar'?'قلاء استقلابي معاوض تنفسياً':'Metabolic alkalosis with respiratory compensation';
+      }else if(co2<expCo2MetAlk-5){
+        primary=lang==='ar'?'قلاء استقلابي + قلاء تنفسي مرافق':'Metabolic alkalosis + concurrent respiratory alkalosis';
+      }else if(co2>expCo2MetAlk+5){
+        primary=lang==='ar'?'قلاء استقلابي + حماض تنفسي مرافق':'Metabolic alkalosis + concurrent respiratory acidosis';
+      }else{
+        primary=lang==='ar'?'قلاء استقلابي':'Metabolic alkalosis';
+      }
+      badgeClass=ph>7.6?'danger':'warn';
+    }else if(loCo2&&hiHco){
+      primary=lang==='ar'?'قلاء مختلط (تنفسي + استقلابي)':'Mixed alkalosis (respiratory + metabolic)';
+      badgeClass='danger';
+    }else{
+      primary=lang==='ar'?'قلاء دم — نمط غير نمطي':'Alkalemia — atypical pattern';
+      badgeClass='warn';
+    }
+  }else{
+    if(hiCo2&&hiHco){
+      if(near(hco,hcoChronAcid,3)){
+        primary=lang==='ar'?'حماض تنفسي مزمن معاوض بالكامل':'Fully compensated chronic respiratory acidosis';
+        detail=lang==='ar'?'pH طبيعي مع ارتفاع PaCO₂ وHCO₃':'Normal pH with ↑PaCO₂ and ↑HCO₃';
+      }else if(near(co2,expCo2MetAlk,5)){
+        primary=lang==='ar'?'قلاء استقلابي معاوض بالكامل':'Fully compensated metabolic alkalosis';
+        detail=lang==='ar'?'pH طبيعي مع ارتفاع HCO₃ وPaCO₂':'Normal pH with ↑HCO₃ and ↑PaCO₂';
+      }else{
+        primary=lang==='ar'?'اضطراب معاوض (↑PaCO₂ و↑HCO₃) — حماض تنفسي مزمن أو قلاء استقلابي':'Compensated disorder (↑PaCO₂ & ↑HCO₃) — chronic respiratory acidosis or metabolic alkalosis';
+        detail=lang==='ar'?'ميّز بالسياق السريري':'Distinguish by clinical context';
+      }
+      badgeClass='warn';
+    }else if(loCo2&&loHco){
+      if(near(hco,hcoChronAlk,3)){
+        primary=lang==='ar'?'قلاء تنفسي مزمن معاوض بالكامل':'Fully compensated chronic respiratory alkalosis';
+        detail=lang==='ar'?'pH طبيعي مع انخفاض PaCO₂ وHCO₃':'Normal pH with ↓PaCO₂ and ↓HCO₃';
+      }else if(near(co2,winters,3)){
+        primary=lang==='ar'?'حماض استقلابي معاوض بالكامل':'Fully compensated metabolic acidosis';
+        detail=lang==='ar'?'pH طبيعي مع انخفاض HCO₃ وPaCO₂':'Normal pH with ↓HCO₃ and ↓PaCO₂';
+      }else{
+        primary=lang==='ar'?'اضطراب معاوض (↓PaCO₂ و↓HCO₃) — قلاء تنفسي مزمن أو حماض استقلابي':'Compensated disorder (↓PaCO₂ & ↓HCO₃) — chronic respiratory alkalosis or metabolic acidosis';
+        detail=lang==='ar'?'ميّز بالسياق السريري':'Distinguish by clinical context';
+      }
+      badgeClass='warn';
+    }else if(hiCo2&&nHco){
+      primary=lang==='ar'?'ارتفاع PaCO₂ مع HCO₃ طبيعي — بداية حماض تنفسي أو معاوضة ناقصة':'↑PaCO₂ with normal HCO₃ — early respiratory acidosis or incomplete compensation';
+      badgeClass='warn';
+    }else if(loCo2&&nHco){
+      primary=lang==='ar'?'انخفاض PaCO₂ مع HCO₃ طبيعي — بداية قلاء تنفسي أو معاوضة ناقصة':'↓PaCO₂ with normal HCO₃ — early respiratory alkalosis or incomplete compensation';
+      badgeClass='warn';
+    }else if(hiHco&&nCo2){
+      primary=lang==='ar'?'ارتفاع HCO₃ مع PaCO₂ طبيعي — بداية قلاء استقلابي أو معاوضة ناقصة':'↑HCO₃ with normal PaCO₂ — early metabolic alkalosis or incomplete compensation';
+      badgeClass='warn';
+    }else if(loHco&&nCo2){
+      primary=lang==='ar'?'انخفاض HCO₃ مع PaCO₂ طبيعي — بداية حماض استقلابي أو معاوضة ناقصة':'↓HCO₃ with normal PaCO₂ — early metabolic acidosis or incomplete compensation';
+      badgeClass='warn';
+    }else if((hiCo2&&loHco)||(loCo2&&hiHco)){
+      primary=lang==='ar'?'نمط مختلط مع pH طبيعي':'Mixed pattern with normal pH';
+      badgeClass='warn';
+    }else{
+      primary=lang==='ar'?'قيم خارج النطاق — راجع المدخلات':'Out-of-range values — review inputs';
+      badgeClass='warn';
+    }
+  }
+
+  const breakdown=[
+    {label:lang==='ar'?'الصلاحية':'Validity',value:validityLabel},
+    {label:lang==='ar'?'pH المقاس':'Measured pH',value:ph.toFixed(2)},
+    {label:lang==='ar'?'pH المحسوب (HH)':'Calculated pH (HH)',value:calcPh.toFixed(2)},
+    {label:'|ΔpH|',value:delta.toFixed(3)},
+    {label:'PaCO₂',value:co2.toFixed(0)+' mmHg'},
+    {label:'HCO₃',value:hco.toFixed(1)+' mEq/L'}
+  ];
+  if(loHco) breakdown.push({label:lang==='ar'?'PaCO₂ المتوقع (Winter)':'Expected PaCO₂ (Winter)',value:winters.toFixed(0)+' mmHg'});
+  if(hiCo2){breakdown.push({label:lang==='ar'?'HCO₃ حاد متوقع':'Expected HCO₃ (acute resp. acid.)',value:hcoAcuteAcid.toFixed(1)});breakdown.push({label:lang==='ar'?'HCO₃ مزمن متوقع':'Expected HCO₃ (chronic resp. acid.)',value:hcoChronAcid.toFixed(1)});}
+  if(loCo2){breakdown.push({label:lang==='ar'?'HCO₃ حاد متوقع':'Expected HCO₃ (acute resp. alk.)',value:hcoAcuteAlk.toFixed(1)});breakdown.push({label:lang==='ar'?'HCO₃ مزمن متوقع':'Expected HCO₃ (chronic resp. alk.)',value:hcoChronAlk.toFixed(1)});}
+
+  return{
+    value:primary,
+    unit:detail||'',
+    badge:validityLabel,
+    badgeClass:badgeClass,
+    breakdown:breakdown,
+    formula:lang==='ar'
+      ?'الصلاحية: pH = 6.1 + log₁₀(HCO₃/(0.0301×PaCO₂)). المعاوضة: Winter؛ تنفسي حاد/مزمن ΔHCO₃≈0.1/0.4×ΔCO₂ (حماض) و0.2/0.5 (قلاء).'
+      :'Validity: pH = 6.1 + log₁₀(HCO₃/(0.0301×PaCO₂)). Compensation: Winter’s; respiratory acute/chronic ΔHCO₃≈0.1/0.4×ΔCO₂ (acidosis) and 0.2/0.5 (alkalosis).'
+  };
+};
+toolById('abg').infoEn='Checks ABG validity with Henderson–Hasselbalch, then interprets acid–base status including compensated disorders and acute vs chronic respiratory patterns.';
+toolById('abg').infoAr='يتحقق من صلاحية غازات الدم بمعادلة Henderson–Hasselbalch ثم يفسّر الحالة الحمضية-القاعدية بما في ذلك المعاوضة والتمييز الحاد/المزمن للتنفسي.';
+
+
+
+/* Brief bilingual explanations for major scores */
+(function(){
+ const INFO={
+  cha2ds2vasc:['Stroke risk stratification in non-valvular atrial fibrillation.','تقدير خطر السكتة في الرجفان الأذيني غير الصمامي.'],
+  hasbled:['Bleeding risk on anticoagulation in atrial fibrillation.','خطر النزيف مع مضادات التخثر في الرجفان الأذيني.'],
+  wells_pe:['Pre-test probability of pulmonary embolism.','احتمال الانصمام الرئوي قبل الفحص.'],
+  wells_dvt:['Pre-test probability of deep vein thrombosis.','احتمال الخثار الوريدي العميق قبل الفحص.'],
+  curb65:['Community-acquired pneumonia severity and site-of-care support.','شدة الالتهاب الرئوي المجتمعي ودعم قرار مكان العلاج.'],
+  qsofa:['Bedside screen for patients at risk of poor sepsis outcomes.','فحص سريع لمرضى قد يكون لديهم مآل سيئ في الإنتان.'],
+  sofa:['Sequential organ failure assessment in critical illness.','تقييم فشل الأعضاء المتتابع في الحالات الحرجة.'],
+  news2:['Early warning score for acute deterioration in hospital.','درجة إنذار مبكر للتدهور الحاد في المستشفى.'],
+  gcs:['Level of consciousness after brain injury or altered mentation.','مستوى الوعي بعد إصابة دماغية أو تغيّر الحالة العقلية.'],
+  gcs_trauma:['GCS applied in trauma assessment.','مقياس غلاسكو في تقييم الرضوح.'],
+  ped_gcs:['Age-appropriate consciousness assessment in children.','تقييم الوعي بما يناسب عمر الطفل.'],
+  nihss:['Standardized stroke neurologic deficit score.','درجة العجز العصبي المعيارية في السكتة.'],
+  heart:['Chest-pain risk score for short-term MACE in the ED.','درجة خطر ألم الصدر للأحداث القلبية القصيرة في الطوارئ.'],
+  timi:['Risk score in unstable angina / NSTEMI.','درجة الخطر في الذبحة غير المستقرة / NSTEMI.'],
+  centor:['Likelihood of streptococcal pharyngitis.','احتمال التهاب الحلق العقدي.'],
+  perc:['Rule-out tool for low-risk PE when pre-test probability is low.','أداة استبعاد للانصمام الرئوي منخفض الاحتمال.'],
+  child_pugh:['Chronic liver disease severity classification.','تصنيف شدة أمراض الكبد المزمنة.'],
+  meld:['Model for end-stage liver disease severity.','نموذج شدة مرض الكبد في مراحله المتقدمة.'],
+  apache:['ICU severity of illness estimate.','تقدير شدة المرض في العناية المركزة.'],
+  alvarado:['Appendicitis clinical probability score.','درجة الاحتمال السريري لالتهاب الزائدة.'],
+  chads:['Legacy AF stroke risk score (superseded by CHA₂DS₂-VASc).','درجة قديمة لخطر السكتة في الرجفان (استُبدلت بـ CHA₂DS₂-VASc).'],
+  grace:['ACS risk score for adverse outcomes.','درجة خطر المتلازمة التاجية الحادة.'],
+  h2fpef:['Probability score for HFpEF.','درجة احتمال قصور القلب مع محافظة الكسر القذفي.'],
+  hcm_risk_scd:['5-year sudden death risk in hypertrophic cardiomyopathy.','خطر الموت المفاجئ خلال 5 سنوات في اعتلال العضلة الضخامي.']
+ };
+ Object.keys(INFO).forEach(id=>{const x=toolById(id);if(x&&!x.infoEn){x.infoEn=INFO[id][0];x.infoAr=INFO[id][1];}});
+})();
+
 /* Make every calculator safe: never return NaN or throw into the UI. */
 TOOLS.forEach(x=>{if(typeof x.calc!=='function' && !x.external)x.calc=function(){return null}});
 
@@ -3174,14 +3790,16 @@ function fieldHTML(f){
  if(f.type==='radio'){
   const opts=f.options||[];
   const isYN=opts.length===2&&opts.every(o=>['yes','no'].includes(String(o.v).toLowerCase()));
-  const wide=opts.length>4?' pd-radio-wide':'';
+  const longOpts=opts.some(o=>((lang==='ar'?o.ar:o.en)||'').length>42);
+  const wide=(opts.length>4||longOpts)?' pd-radio-wide':'';
   const yn=isYN?' pd-radio-yn':'';
+  const list=(!isYN&&(opts.length>=3||longOpts))?' pd-radio-list':'';
   const grid=opts.map(o=>{
    let txt=lang==='ar'?o.ar:o.en;
    if(isYN){const v=String(o.v).toLowerCase();txt=v==='yes'?t('yes'):t('no');}
    return `<label class="pd-radio-card${isYN?' pd-yn-opt pd-yn-'+String(o.v).toLowerCase():''}"><input type="radio" name="${id}" value="${esc(o.v)}" data-field="${f.id}"><span>${esc(txt)}</span></label>`;
   }).join('');
-  return `<fieldset class="pd-radio-group${wide}${yn}"><legend class="pd-radio-legend"><span class="pd-radio-legend-text">${esc(label)}</span></legend><div class="pd-radio-grid">${grid}</div></fieldset>`;
+  return `<fieldset class="pd-radio-group${wide}${yn}${list}"><legend class="pd-radio-legend"><span class="pd-radio-legend-text">${esc(label)}</span></legend><div class="pd-radio-grid">${grid}</div></fieldset>`;
  }
  if(f.type==='select')return `<div class="pd-field"><label for="${id}">${esc(label)}</label><select id="${id}" data-field="${f.id}"><option value="">${esc(lang==='ar'?'اختر...':'Select...')}</option>${(f.options||[]).map(o=>`<option value="${esc(o.v)}">${esc(lang==='ar'?o.ar:o.en)}</option>`).join('')}</select></div>`;
  if(f.type==='text')return `<div class="pd-field"><label for="${id}">${esc(label)}</label><input type="text" id="${id}" data-field="${f.id}"></div>`;
@@ -3189,7 +3807,10 @@ function fieldHTML(f){
 }
 function buildToolForm(x){
  if(x.external)return `<div class="pd-result" style="margin-top:0"><div class="pd-result-label">${esc(t('check_interaction'))}</div><div class="pd-result-value" style="font-size:1.45rem">Medscape</div><p class="pd-disclaimer">${esc(t('external_note'))}</p><button type="button" class="pd-btn pd-btn-primary" id="open-medscape"><i class="fa-solid fa-arrow-up-right-from-square"></i> ${esc(t('open_medscape'))}</button></div><p class="pd-disclaimer">${esc(t('disclaimer'))}</p>`;
- let h=`<div id="tool-fields">`;
+ const info=lang==='ar'?(x.infoAr||''):(x.infoEn||'');
+ let h='';
+ if(info)h+=`<div class="pd-tool-info"><i class="fa-solid fa-circle-info"></i><span>${esc(info)}</span></div>`;
+ h+=`<div id="tool-fields">`;
  (x.fields||[]).forEach(f=>h+=fieldHTML(f));
  h+=`</div><div id="tool-message" class="pd-validation"></div><div id="tool-result"></div><p class="pd-disclaimer">${esc(t('disclaimer'))}</p>`;
  return h;
@@ -3203,7 +3824,7 @@ function validate(x,v){
 }
 function fillSample(x){(x.fields||[]).forEach(f=>{if(!x.sample||x.sample[f.id]===undefined)return;const val=x.sample[f.id];if(f.type==='radio'){const e=document.querySelector(`input[name="f-${f.id}"][value="${CSS.escape(String(val))}"]`);if(e)e.checked=true}else{const e=document.getElementById('f-'+f.id);if(e){if(f.type==='check')e.checked=!!val;else e.value=val}}});runCalc(x)}
 function resetForm(x){(x.fields||[]).forEach(f=>{if(f.type==='radio')document.querySelectorAll(`input[name="f-${f.id}"]`).forEach(e=>e.checked=false);else{const e=document.getElementById('f-'+f.id);if(e){if(f.type==='check')e.checked=false;else e.value=''}}});document.getElementById('tool-result').innerHTML='';document.getElementById('tool-message').textContent='';clearScoreBox()}
-function clearScoreBox(){const box=document.getElementById('bottom-result'),v=document.getElementById('bottom-result-value'),u=document.getElementById('bottom-result-unit'),b=document.getElementById('bottom-result-badge');if(box){box.classList.remove('score-warn','score-danger','score-pulse')}if(v)v.textContent='—';if(u)u.textContent='';if(b){b.textContent='';b.className='pd-score-badge'}const tr=document.getElementById('tool-result');if(tr){const pr=tr.querySelector('.pd-result');if(pr)pr.classList.remove('risk-warn','risk-danger')}}
+function clearScoreBox(){const box=document.getElementById('bottom-result'),v=document.getElementById('bottom-result-value'),u=document.getElementById('bottom-result-unit'),b=document.getElementById('bottom-result-badge');if(box){box.classList.remove('score-warn','score-danger','score-pulse','pd-score-long')}if(v)v.textContent='—';if(u)u.textContent='';if(b){b.textContent='';b.className='pd-score-badge'}const tr=document.getElementById('tool-result');if(tr){const pr=tr.querySelector('.pd-result');if(pr)pr.classList.remove('risk-warn','risk-danger')}}
 function renderResult(r){
  const box=document.getElementById('tool-result');if(!r){box.innerHTML='';const sb=document.getElementById('bottom-result');if(sb)sb.classList.remove('score-warn','score-danger');const bv=document.getElementById('bottom-result-value');if(bv)bv.textContent='—';const bu=document.getElementById('bottom-result-unit');if(bu)bu.textContent='';const bb=document.getElementById('bottom-result-badge');if(bb){bb.textContent='';bb.className='pd-score-badge'}return}
  const bd=(r.breakdown||[]).map(x=>`<div class="pd-break-row"><span>${esc(x.label)}</span><strong>${esc(x.value)}</strong></div>`).join('');
@@ -3211,7 +3832,11 @@ function renderResult(r){
  box.innerHTML=`<div class="pd-result${riskCls}"><div class="pd-result-label">${esc(t('result'))}</div><div class="pd-result-value">${esc(r.value)}</div><div class="pd-result-unit">${esc(r.unit||'')}</div>${r.badge?`<div class="pd-result-badge ${r.badgeClass||''}">${esc(r.badge)}</div>`:''}${bd?`<div class="pd-breakdown"><div class="pd-section-title">${esc(t('breakdown'))}</div>${bd}</div>`:''}${r.formula?`<div class="pd-formula"><strong>${esc(t('formula'))}:</strong> ${esc(r.formula)}</div>`:''}</div>`;
   const scoreBox=document.getElementById('bottom-result'),br=document.getElementById('bottom-result-value'),bu=document.getElementById('bottom-result-unit'),bb=document.getElementById('bottom-result-badge');
   if(scoreBox){scoreBox.classList.remove('score-warn','score-danger');if(r.badgeClass==='warn')scoreBox.classList.add('score-warn');else if(r.badgeClass==='danger')scoreBox.classList.add('score-danger')}
-  if(br){const prev=br.textContent;br.textContent=String(r.value??'—');if(scoreBox&&prev!==br.textContent){scoreBox.classList.remove('score-pulse');void scoreBox.offsetWidth;scoreBox.classList.add('score-pulse');}}if(bu)bu.textContent=r.unit||'';if(bb){bb.textContent=r.badge||'';bb.className='pd-score-badge'+(r.badgeClass?' '+r.badgeClass:'')}
+  if(br){const prev=br.textContent;const val=String(r.value??'—');br.textContent=val;if(scoreBox){const long=val.length>28||/\s/.test(val)&&val.length>18;scoreBox.classList.toggle('pd-score-long',long);if(prev!==val){scoreBox.classList.remove('score-pulse');void scoreBox.offsetWidth;scoreBox.classList.add('score-pulse');}}
+  // keep sheet body clear of growing bottom bar
+  const bar=document.getElementById('tool-bottom-bar');const body=document.getElementById('sheet-body');
+  if(bar&&body){body.style.paddingBottom=(bar.offsetHeight+24)+'px';}
+}if(bu)bu.textContent=r.unit||'';if(bb){bb.textContent=r.badge||'';bb.className='pd-score-badge'+(r.badgeClass?' '+r.badgeClass:'')}
 }
 function runCalc(x){
  if(x.external)return;
@@ -3223,7 +3848,7 @@ function bindToolForm(x){
  if(x.external){document.getElementById('open-medscape').onclick=()=>window.open('https://reference.medscape.com/drug-interactionchecker','_blank','noopener,noreferrer');return}
  const resetBtn=document.getElementById('btn-reset-fixed');
  if(resetBtn)resetBtn.onclick=()=>resetForm(x);
- document.querySelectorAll('#tool-fields input,#tool-fields select').forEach(e=>{e.addEventListener('input',()=>runCalc(x));e.addEventListener('change',()=>runCalc(x))});
+ document.querySelectorAll('#tool-fields input,#tool-fields select').forEach(e=>{e.addEventListener('input',()=>runCalc(x));e.addEventListener('change',()=>runCalc(x));e.addEventListener('click',()=>runCalc(x));});
  runCalc(x);
 }
 
