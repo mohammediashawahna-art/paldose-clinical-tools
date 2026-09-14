@@ -367,95 +367,6 @@ input:focus, select:focus, textarea:focus,
 }
 
 
-/* =========================
-   DESKTOP CLINICAL SCORE LAYOUT
-   ========================= */
-@media (min-width: 900px){
-  /* Give clinical score tools a wider, dashboard-like workspace */
-  body.tool-open #tool-sheet .sheet-inner,
-  body.tool-open #tool-sheet .tool-sheet-inner,
-  body.tool-open #tool-sheet .pd-sheet-inner{
-    max-width: 1180px;
-    margin: 0 auto;
-  }
-
-  body.tool-open #sheet-body{
-    padding-left: clamp(24px, 4vw, 64px);
-    padding-right: clamp(24px, 4vw, 64px);
-  }
-
-  /* Two-column clinical score grid with generous cards */
-  body.tool-open #tool-fields{
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 16px;
-    align-items: stretch;
-  }
-
-  /* Each question/input becomes a clean clinical card */
-  body.tool-open #tool-fields > *{
-    min-width: 0;
-    padding: 16px;
-    border-radius: 16px;
-    background: var(--pd-card-bg, var(--card-bg, rgba(255,255,255,.72)));
-    border: 1px solid var(--pd-border, rgba(100,116,139,.16));
-    box-shadow: 0 6px 20px rgba(15,23,42,.055);
-  }
-
-  body.dark body.tool-open #tool-fields > *,
-  body[data-theme="dark"] body.tool-open #tool-fields > *,
-  .dark body.tool-open #tool-fields > *{
-    background: var(--pd-card-bg, rgba(30,41,59,.72));
-    border-color: rgba(148,163,184,.18);
-    box-shadow: 0 8px 24px rgba(0,0,0,.18);
-  }
-
-  /* Yes/No controls stay horizontal inside each question card */
-  body.tool-open #tool-fields .pd-radio-grid,
-  body.tool-open #tool-fields .pd-radio-group{
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
-    margin-top: 10px;
-  }
-
-  /* Numeric fields also become a compact desktop grid */
-  body.tool-open #tool-fields input[type="number"]{
-    min-height: 48px;
-  }
-
-  /* If a field is explicitly wide, let it span the workspace */
-  body.tool-open #tool-fields > .pd-field-wide,
-  body.tool-open #tool-fields > [data-wide="true"]{
-    grid-column: 1 / -1;
-  }
-
-  /* Result is visually separated from the question grid */
-  body.tool-open #tool-result{
-    max-width: 760px;
-    margin: 22px auto 0;
-  }
-
-  /* Slightly larger desktop typography */
-  body.tool-open #tool-fields label,
-  body.tool-open #tool-fields .pd-label{
-    line-height: 1.45;
-  }
-}
-
-/* Very wide desktop: 3-column dashboard for dense clinical scores */
-@media (min-width: 1250px){
-  body.tool-open #tool-fields.pd-dense-score-grid{
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
-/* Mobile remains the compact layout */
-@media (max-width: 899px){
-  body.tool-open #tool-fields{
-    grid-template-columns: 1fr;
-  }
-}
-
 </style>
 </head>
 <body>
@@ -1217,12 +1128,8 @@ function fieldHTML(f){
 }
 function buildToolForm(x){
  if(x.external)return `<div class="pd-result" style="margin-top:0"><div class="pd-result-label">${esc(t('check_interaction'))}</div><div class="pd-result-value" style="font-size:1.45rem">Medscape</div><p class="pd-disclaimer">${esc(t('external_note'))}</p><button type="button" class="pd-btn pd-btn-primary" id="open-medscape"><i class="fa-solid fa-arrow-up-right-from-square"></i> ${esc(t('open_medscape'))}</button></div><p class="pd-disclaimer">${esc(t('disclaimer'))}</p>`;
- const fields=x.fields||[];
- const choices=fields.filter(f=>f.type==='radio'||f.type==='check');
- const inputs=fields.filter(f=>f.type!=='radio'&&f.type!=='check');
- let h=`<div id="tool-fields" class="${x.cat==="score"||x.category==="score"||/score/i.test(x.en||"")?"pd-dense-score-grid":""}">`;
- if(choices.length)h+=`<div class="pd-choice-fields">${choices.map(fieldHTML).join('')}</div>`;
- if(inputs.length)h+=`<div class="pd-input-fields">${inputs.map(fieldHTML).join('')}</div>`;
+ let h=`<div id="tool-fields">`;
+ (x.fields||[]).forEach(f=>h+=fieldHTML(f));
  h+=`</div><div id="tool-message" class="pd-validation"></div><div id="tool-result"></div><p class="pd-disclaimer">${esc(t('disclaimer'))}</p>`;
  return h;
 }
